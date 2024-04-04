@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Virtual Tryon Demo</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { padding-top: 20px; padding-bottom: 20px; }
+        .container { max-width: 850px; margin: auto; }
+        .header, .footer { text-align: center; margin-bottom: 30px; }
+        .footer { margin-top: 40px; font-size: 0.8em; }
+        .form-group, .project-info { margin-bottom: 20px; }
+        .image-preview { max-height: 250px; width: auto; margin-top: 10px; display: block; }
+        .custom-file-input { margin-bottom: 15px; }
+        .image-upload-container { display: flex; justify-content: space-between; }
+        .image-upload { flex: 1; text-align: center; padding: 0 10px; }
+        .features-list { list-style: none; padding: 0; }
+        .features-list li { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Virtual Tryon Demo</h1>
+            <p>Experience the future of fashion with our Virtual Try-On technology.</p>
+        </header>
+        <hr/>
+
+        <div class="project-info">
+            <h3>About the Project</h3>
+            <p>This Virtual Tryon Demo allows users to upload a photo of themselves and a clothing item to see how it would look without physically trying it on. Using advanced image processing and AI, the application offers a realistic and interactive try-on experience.</p>
+            <ul class="features-list">
+                <li>Realistic garment fitting on any body type.</li>
+                <li>Instant visualization of clothing items from your wardrobe or online stores.</li>
+                <li>Enhanced shopping experience with AI-driven fashion insights.</li>
+            </ul>
+        </div>
+
+        <form action="upload" method="post" enctype="multipart/form-data">
+            <div class="image-upload-container">
+                <div class="image-upload">
+                    <label for="personImage" class="text-muted">Target Person Image</label>
+                    <input type="file" name="personImage" id="personImage" class="custom-file-input" accept="image/*" required>
+                    <img id="personPreview" class="image-preview" />
+                </div>
+
+                <div class="image-upload">
+                    <label for="clothImage" class="text-muted">Cloth Image</label>
+                    <input type="file" name="clothImage" id="clothImage" class="custom-file-input" accept="image/*" required>
+                    <img id="clothPreview" class="image-preview" />
+                </div>
+            </div>
+
+            <input type="submit" class="btn btn-primary" value="Generate Tryon Image">
+        </form>
+
+        <footer class="footer">
+            <p>&copy; 2023 Virtual Tryon Demo. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        function updateImagePreview(input, previewId) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById(previewId).src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        document.getElementById('personImage').addEventListener('change', function() {
+            updateImagePreview(this, 'personPreview');
+        });
+
+        document.getElementById('clothImage').addEventListener('change', function() {
+            updateImagePreview(this, 'clothPreview');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Virtual Tryon Results</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container { max-width: 800px; margin: auto; padding-top: 50px; }
+        .result-image { max-width: 100%; margin-top: 20px; }
+        .header { text-align: center; margin-bottom: 30px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Your Virtual Tryon Results</h2>
+        </div>
+
+        <!-- Displaying the original uploaded images -->
+        <div>
+            <h4>Original Person Image</h4>
+            <img src="{{ url_for('static', filename='data/input/image/'+user_image) }}" class="result-image" alt="Original Person Image" />
+        </div>
+
+        <!-- Displaying the try-on result -->
+        <div>
+            <h4>Virtual Try-On Result</h4>
+            <img src="{{ url_for('static', filename='result/TOM/input/try-on/'+user_image) }}" class="result-image" alt="Virtual Try-On Result" />
+        </div>
+
+        <a href="/" class="btn btn-primary">Try Another</a>
+    </div>
+</body>
+</html>
